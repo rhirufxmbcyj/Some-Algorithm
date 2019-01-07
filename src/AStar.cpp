@@ -4,65 +4,65 @@
 using std::sort;
 
 vector<a_node*> open_list;
+
+void set_node_variable(a_node *curr_node,a_node *next_node,a_node *_end)
+{
+    next_node->h = (abs(next_node->x - _end->x) + abs(next_node->y - _end->y))*STEP_LENGTH;
+    next_node->g = curr_node->g + STEP_LENGTH;
+    next_node->parent = curr_node;
+}
+
 int insert_neighbor_to_openlist(a_node *curr_node, a_node *_end, a_node _map[MAP_ROW][MAP_COLUMN])
 {
-    a_node *tmp = NULL;
+    a_node *next_node = NULL;
     vector<a_node*>::iterator is_contain;
     //取到当前节点的上下左右节点加入open列表 并设置这些节点的parent为当前节点
     //坐标系与数组下标有所不同
     //上
     if (curr_node->x > 0)
     {
-        tmp = &_map[curr_node->x-1][curr_node->y];
-        is_contain = std::find(open_list.begin(), open_list.end(), tmp);
-        if (tmp->attr != ATTR_FORBID && tmp->attr != ATTR_CLOSE && is_contain == open_list.end())
+        next_node = &_map[curr_node->x-1][curr_node->y];
+        is_contain = std::find(open_list.begin(), open_list.end(), next_node);
+        if (next_node->attr != ATTR_FORBID && next_node->attr != ATTR_CLOSE && is_contain == open_list.end())
         {
-            tmp->h = (abs(tmp->x - _end->x) + abs(tmp->y - _end->y))*STEP_LENGTH;
-            tmp->g = curr_node->g + STEP_LENGTH;
-            tmp->parent = curr_node;
-            open_list.push_back(tmp);
+            set_node_variable(curr_node, next_node, _end);
+            open_list.push_back(next_node);
         }
     }
 
     //下
     if (curr_node->x < MAP_ROW - 1)
     {
-        tmp = &_map[curr_node->x+1][curr_node->y];
-        is_contain = std::find(open_list.begin(), open_list.end(), tmp);
-        if (tmp->attr != ATTR_FORBID && tmp->attr != ATTR_CLOSE && is_contain == open_list.end())
+        next_node = &_map[curr_node->x+1][curr_node->y];
+        is_contain = std::find(open_list.begin(), open_list.end(), next_node);
+        if (next_node->attr != ATTR_FORBID && next_node->attr != ATTR_CLOSE && is_contain == open_list.end())
         {
-            tmp->h = (abs(tmp->x - _end->x) + abs(tmp->y - _end->y))*STEP_LENGTH;
-            tmp->g = curr_node->g + STEP_LENGTH;
-            tmp->parent = curr_node;
-            open_list.push_back(tmp);
+            set_node_variable(curr_node, next_node, _end);
+            open_list.push_back(next_node);
         }
     }
 
     //左
     if (curr_node->y > 0)
     {
-        tmp = &_map[curr_node->x][curr_node->y-1];
-        is_contain = std::find(open_list.begin(), open_list.end(), tmp);
-        if (tmp->attr != ATTR_FORBID && tmp->attr != ATTR_CLOSE && is_contain == open_list.end())
+        next_node = &_map[curr_node->x][curr_node->y-1];
+        is_contain = std::find(open_list.begin(), open_list.end(), next_node);
+        if (next_node->attr != ATTR_FORBID && next_node->attr != ATTR_CLOSE && is_contain == open_list.end())
         {
-            tmp->h = (abs(tmp->x - _end->x) + abs(tmp->y - _end->y))*STEP_LENGTH;
-            tmp->g = curr_node->g + STEP_LENGTH;
-            tmp->parent = curr_node;
-            open_list.push_back(tmp);
+            set_node_variable(curr_node, next_node, _end);
+            open_list.push_back(next_node);
         }
     }
 
     //右
     if (curr_node->y < MAP_COLUMN - 1)
     {
-        tmp = &_map[curr_node->x][curr_node->y+1];
-        is_contain = std::find(open_list.begin(), open_list.end(), tmp);
-        if (tmp->attr != ATTR_FORBID && tmp->attr != ATTR_CLOSE && is_contain == open_list.end())
+        next_node = &_map[curr_node->x][curr_node->y+1];
+        is_contain = std::find(open_list.begin(), open_list.end(), next_node);
+        if (next_node->attr != ATTR_FORBID && next_node->attr != ATTR_CLOSE && is_contain == open_list.end())
         {
-            tmp->h = (abs(tmp->x - _end->x) + abs(tmp->y - _end->y))*STEP_LENGTH;
-            tmp->g = curr_node->g + STEP_LENGTH;
-            tmp->parent = curr_node;
-            open_list.push_back(tmp);
+            set_node_variable(curr_node, next_node, _end);
+            open_list.push_back(next_node);
         }
     }
     return 0;
@@ -135,7 +135,7 @@ void print_path(a_node *node)
 
 void print_map(a_node _map[MAP_ROW][MAP_COLUMN])
 {
-    printf("\n");
+    printf("print map\n");
     for (int i = 0; i < MAP_ROW; i++)
     {
         for (int j = 0; j < MAP_COLUMN; j++)
