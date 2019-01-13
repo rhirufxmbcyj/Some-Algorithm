@@ -7,6 +7,7 @@ enum attribute
     ATTR_OPEN,
     ATTR_CLOSE,
     ATTR_FORBID,
+    //打印地图用到 最短路径的每个节点的属性是它
     ATTR_RIGHT
 };
 

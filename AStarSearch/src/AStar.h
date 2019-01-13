@@ -14,6 +14,7 @@ typedef struct a_node_t
     int g;
     //当前节点到终点的估算长度
     int h;
+    //状态
     int attr;
     struct a_node_t *parent;
 }a_node;

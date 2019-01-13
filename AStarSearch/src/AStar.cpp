@@ -91,7 +91,7 @@ void find_destination(a_node *_start, a_node *_end, a_node _map[MAP_ROW][MAP_COL
     }
     //将起点加入open列表
     open_list.push_back(_start);
-    do 
+    do
     {
         //拿到open列表中f最小的节点
         curr_node = open_list.at(0);
