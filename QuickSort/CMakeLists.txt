@@ -1,0 +1,5 @@
+cmake_minimum_required(VERSION 2.8)
+project(QuickSort)
+file(GLOB SRC_FILES "*.c")
+file(GLOB HEAD_FILES "*.h")
+add_executable(QuickSort ${SRC_FILES} ${HEAD_FILES})
