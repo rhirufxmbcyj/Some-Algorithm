@@ -1,1 +1,0 @@
-/root/liuwc/Some-Algorithm/BinarySearch/build/CMakeFiles/BinarySearc.dir
