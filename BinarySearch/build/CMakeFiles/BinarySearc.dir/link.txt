@@ -1,0 +1,1 @@
+/usr/bin/cc      CMakeFiles/BinarySearc.dir/main.c.o  -o BinarySearc -rdynamic 
